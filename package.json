@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "fs": "^0.0.1-security",
+    "single-line-log": "^1.1.2",
+    "yargs": "^17.2.1"
+  }
+}
