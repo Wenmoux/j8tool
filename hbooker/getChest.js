@@ -1,7 +1,7 @@
-config = require("./config.js")
-token = hbooker.token
-username =hbooker.username
-device_token = hbooker.devicetoken ?? "ciweimao_00000000000000000000000000000000"
+config = require("./config.json")
+token = config.token
+username =config.username
+device_token = config.devicetoken ?? "ciweimao_00000000000000000000000000000000"
 cidArr = []
 var sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const CryptoJS = require("crypto-js");
