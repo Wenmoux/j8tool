@@ -113,7 +113,7 @@ async function drama(id) {
             let dm = await getdm(sound.sound_id)
             dpath = path + "/" + (start++) + "_" + sound.name //下载路径
             if (durl) {
-                hz = durl.split("\.")[durl.split("\.").length - 1] //后缀
+                hz = durl.split("\.")[durl.split("\.").length - 1].split('?')[0] //后缀
                 vpath = dpath + "." + hz //音频  
                 //dpath = path + "/" + type + "/" + sound.name + "." + hz
                 if (!fs.existsSync(vpath)) {
