@@ -44,7 +44,8 @@
             let list = $('#w0>div')
             for (li of list) {
                 let name = $(".l_chaptname", li).text()
-                fs.appendFileSync(paa, name + "\n")
+                let counter =  $(".l_counter", li).text()
+                fs.appendFileSync(paa, counter+"."+name + "\n")
                 console.log(name)
                 if ($(li).text().match(/訂購/)) fs.appendFileSync(paa, "      请先购买\n")
                 else {
@@ -82,4 +83,4 @@
         await getCon(detail)
     }
     
-    downp18(790633)
+    downp18(786366)
