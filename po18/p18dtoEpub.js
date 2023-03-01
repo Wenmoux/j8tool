@@ -78,7 +78,7 @@ async function getdetail(bid) {
    let  zh = $("dd.statu").text().match(/\d+/)
     let detail = {        
         title: $("h1.book_name").text().split("（")[0],
-        author: $("h2.book_author").text(),
+        author: $("a.book_author").text(),
         cover: $('.book_cover>img').attr("src"),
         desc: $('.B_I_content').html(),
         bid,
@@ -97,7 +97,6 @@ async function downp18(bid) {
   option.title = detail.title.split(/（|【/)[0];
   option.cover = detail.cover;
   console.log(detail);
-  
   await getCon(detail);
   console.log("开始生成epub")
 await  new epub(option);
