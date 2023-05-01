@@ -1,6 +1,6 @@
 config = require("./config.json")
 token = config.token
-username =config.username
+username =config.account
 device_token = config.devicetoken ?? "ciweimao_00000000000000000000000000000000"
 cidArr = []
 var sleep = ms => new Promise(resolve => setTimeout(resolve, ms));

@@ -4,7 +4,7 @@ export let content_opf = `<?xml version='1.0' encoding='UTF-8' standalone='no' ?
     <dc:identifier>{uuid}</dc:identifier>
     <dc:title>{bookName}</dc:title>
     <dc:description>{bookDesc}</dc:description>
-    <dc:publisher>xingluo</dc:publisher>
+    <dc:publisher>po18脸红心跳</dc:publisher>
     <dc:creator n1:role="aut" n1:file-as="{bookAuthor}" xmlns:n1="http://www.idpf.org/2007/opf">{bookAuthor}</dc:creator>
     <dc:date n2:event="creation" xmlns:n2="http://www.idpf.org/2007/opf">2023-01-06</dc:date>
     <dc:language>zh</dc:language>

@@ -7,7 +7,6 @@ let i = 1;
 let title = "";
 let pictures = [];
 for (url of argv._) {
-console.log(argv._)
   getpics(url);
 }
 
@@ -15,7 +14,6 @@ console.log(argv._)
 使用方法 ： 
 node enterdesk.js 链接
 如 node enterdesk.js https://mm.enterdesk.com/bizhi/62280.html
-
 */
 //获取图片列表
 function getpics(url) {

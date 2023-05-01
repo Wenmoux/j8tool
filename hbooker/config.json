@@ -1,6 +1,6 @@
 {
-    "username": "",
+    "account": "",
     "token": "",
-    "device_token": "",
+    "devicetoken": "",
     "push": ""
 }

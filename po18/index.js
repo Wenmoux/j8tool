@@ -109,6 +109,5 @@ export function epub(options) {
         type: "nodebuffer"
     }).then(function(content) {
         fs.writeFileSync(`./save/${options.title}.epub`, content)
-        console.log("下载epub完成")
     })
 }
