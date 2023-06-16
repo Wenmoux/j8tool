@@ -20,8 +20,7 @@ async function downp18() {
         const detail = await getdetail(bid);
         if (detail) {
             option = Object.assign({}, detail);
-            paa = `./${detail.title}.txt`           
-            delete detail.desccc
+            paa = `./${detail.title}.txt`                      
             console.log(detail);
             await getCon(detail);
             console.log("开始生成epub")
