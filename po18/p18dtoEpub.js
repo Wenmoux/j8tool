@@ -20,11 +20,7 @@ async function downp18() {
         const detail = await getdetail(bid);
         if (detail) {
             option = Object.assign({}, detail);
-            paa = `./${detail.title}.txt`
-            option.content[0] = {
-                title: "简介",
-                data: detail.desccc
-            }
+            paa = `./${detail.title}.txt`           
             delete detail.desccc
             console.log(detail);
             await getCon(detail);
@@ -47,7 +43,7 @@ function getContent(bid, pid, ii) {
             $("h1").remove();
             option.content[ii] = {
                 title: name,
-                data: $.html().trim()
+                data: $("body").html().replaceAll("<p>","").replaceAll("</p>","\n")
             }
         } catch (err) {
             console.log(err)
@@ -74,12 +70,13 @@ async function getCon(detail) {
         await Promise.all(
             list.toArray().map((li) => {
                 const name = $(".l_chaptname", li).text();
-                console.log(`${k++}.${name}`);
+                console.log(`${k}.${name}`);
                 if ($(li).text().match(/訂購/)) {
                     console.log('    请购买');
                     return Promise.resolve();
                 } else {
                     console.log("    下载中...");
+k++
                     const href = $(".l_btn>a", li).attr('href');
                     const id = href.split('/');
                     return getContent(id[2], id[4], k, option).then(() => {});
@@ -101,9 +98,8 @@ function getdetail(bid) {
                 title: $("h1.book_name").text().split(/（|【|\(/)[0],
                 author: $("a.book_author").text(),
                 cover: $('.book_cover>img').attr("src"),
-                desc: $('.B_I_content').text(),
-                content: [],
-                desccc: $('.B_I_content').html(),
+                description: $('.B_I_content').text(),
+                content: [],             
                 bid,
                 pageNum: Math.ceil(zh / 100)
             };
