@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PO18小说下载器
 // @namespace    http://tampermonkey.net/
-// @version      1.3.4
+// @version      1.4.0
 // @description 下载PO18小说，支持TXT或HTML格式，多线程下载，记录下载历史，增强阅读体验，查看已购书架
 // @author       wenmoux
 // @license MIT
@@ -453,7 +453,7 @@
                     </div>
                     <div class="po18-tab-pane" id="po18-tab-about">
                         <div class="po18-card">
-                            <h3>PO18小说下载器增强版 v1.3.4</h3><p>这是一款用于下载PO18网站小说的工具，支持TXT和HTML格式下载，多线程下载等功能。</p>
+                            <h3>PO18小说下载器增强版 v1.4.0</h3><p>这是一款用于下载PO18网站小说的工具，支持TXT和HTML格式下载，多线程下载等功能。</p>
                               <p>作者github：wenmoux:</p>
                             <p>新增功能:</p>
                             <ol>
@@ -1155,21 +1155,24 @@
             });
         },
 
-        async getChapterList(detail) {
-            const chapters = [];
+async getChapterList(detail) {
+    const chapters = [];
+    let globalIndex = 0;
+    for (let page = 1; page <= detail.pageNum; page++) {
+        this.log(`正在获取第${page}/${detail.pageNum} 页章节列表...`);
+        const url = `https://www.po18.tw/books/${detail.bid}/articles?page=${page}`;
+        const pageChapters = await this.getPageChapters(url);
 
-            for (let page = 1; page <= detail.pageNum; page++) {
-                this.log(`正在获取第${page}/${detail.pageNum} 页章节列表...`);
-                const url = `https://www.po18.tw/books/${detail.bid}/articles?page=${page}`;
-                const pageChapters = await this.getPageChapters(url);
-
-                if (pageChapters && pageChapters.length > 0) {
-                    chapters.push(...pageChapters);
-                }
+        if (pageChapters && pageChapters.length > 0) {
+            for (const chapter of pageChapters) {
+                chapter.index = globalIndex++;
             }
+            chapters.push(...pageChapters);
+        }
+    }
 
-            return chapters;
-        },
+    return chapters;
+},
 
         async getPageChapters(url) {
             return new Promise((resolve) => {
@@ -1295,7 +1298,7 @@
                 content += `【正文】\n`;
                 this.content.forEach(chapter => {
                     if (chapter) { // 确保章节存在
-                      content += chapter.rawText.replace(/\s+/g, '\n\n');
+                        content += `\n\n${chapter.title}\n\n`;content += chapter.rawText.replace(/\s+/g, '\n\n');
                     }
                 });
 
